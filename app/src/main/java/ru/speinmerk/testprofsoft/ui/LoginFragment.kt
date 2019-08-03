@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.snackbar.Snackbar
 import ru.speinmerk.testprofsoft.databinding.LoginFragmentBinding
 import ru.speinmerk.testprofsoft.vm.LoginViewModel
 
@@ -37,12 +38,19 @@ class LoginFragment : Fragment() {
         viewModel.hideKeyboard.observe(viewLifecycleOwner, Observer {
             hideKeyboard()
         })
+        viewModel.showSnackbar.observe(viewLifecycleOwner, Observer {
+            showSnackbar(it)
+        })
     }
 
     private fun hideKeyboard() {
         val view = activity?.currentFocus ?: return
         val imm = activity?.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager?
         imm?.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+
+    private fun showSnackbar(text: String) {
+        Snackbar.make(binding.root, text, Snackbar.LENGTH_LONG).show()
     }
 
 }

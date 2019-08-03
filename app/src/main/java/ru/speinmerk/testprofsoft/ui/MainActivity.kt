@@ -15,13 +15,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         viewModel = ViewModelProviders.of(this)[MainViewModel::class.java]
 
-        showFragment(LoginFragment.newInstance())
+        if (savedInstanceState == null) {
+            showFragment(LoginFragment.newInstance())
+        }
     }
 
     private fun showFragment(fragment: Fragment) {
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.fragment_container, fragment)
+            .replace(R.id.fragment_container, fragment)
             .commit()
     }
 }

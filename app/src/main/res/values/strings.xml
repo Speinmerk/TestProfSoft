@@ -4,4 +4,6 @@
     <string name="password">Пароль</string>
     <string name="email">Электронный адрес</string>
     <string name="btn_login">Вход</string>
+    <string name="current_weather">Текущая температура: %1$s °C</string>
+    <string name="request_error">Ошибка запроса</string>
 </resources>

@@ -37,13 +37,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    app:error="@{vm.emailError}">
+                    app:error="@{vm.emailError}"
+                    app:cornerRadius="16dp">
 
                 <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/email"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:ems="12"
+                        android:ems="13"
+                        android:text="@={vm.email}"
                         android:hint="@string/email"
                         android:inputType="text"
                         android:onTextChanged="@{(text, start, before, count) -> vm.onEmailChanged(text)}" />
@@ -55,19 +57,21 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     app:passwordToggleEnabled="true"
-                    app:error="@{vm.passwordError}">
+                    app:error="@{vm.passwordError}"
+                    app:cornerRadius="16dp">
 
                 <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/password"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:ems="12"
+                        android:ems="13"
+                        android:text="@={vm.password}"
                         android:hint="@string/password"
                         android:inputType="textPassword"
                         android:onTextChanged="@{(text, start, before, count) -> vm.onPasswordChanged(text)}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_login"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

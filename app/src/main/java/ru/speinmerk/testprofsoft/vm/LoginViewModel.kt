@@ -1,17 +1,27 @@
 package ru.speinmerk.testprofsoft.vm
 
+import android.app.Application
 import android.widget.EditText
 import androidx.databinding.ObservableField
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.AndroidViewModel
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import ru.speinmerk.testprofsoft.R
 import ru.speinmerk.testprofsoft.common.SingleLiveEvent
+import ru.speinmerk.testprofsoft.common.extensions.context
+import ru.speinmerk.testprofsoft.common.utils.Result
 import ru.speinmerk.testprofsoft.common.validators.EmailValidator
 import ru.speinmerk.testprofsoft.common.validators.PasswordValidator
+import ru.speinmerk.testprofsoft.domain.RepositoryProvider
 
-class LoginViewModel : ViewModel() {
+class LoginViewModel(application: Application) : AndroidViewModel(application) {
+    var email = ObservableField("1@1.ru")
+    var password = ObservableField("123qweA")
     var emailError = ObservableField<String?>()
     var passwordError = ObservableField<String?>()
 
     val hideKeyboard = SingleLiveEvent<Unit>()
+    val showSnackbar = SingleLiveEvent<String>()
 
     fun onEmailChanged(text: CharSequence) {
         val isValidEmail = EmailValidator.check(text.toString())
@@ -45,5 +55,19 @@ class LoginViewModel : ViewModel() {
             return
         }
         hideKeyboard.postCall()
+        showWeather()
+    }
+
+    private fun showWeather() = GlobalScope.launch {
+        val weatherRepository = RepositoryProvider.provideWeatherRepository()
+        when(val result = weatherRepository.getWeather("Saratov,ru")) {
+            is Result.Success -> {
+                val weather = result.data
+                showSnackbar.postValue(context.getString(R.string.current_weather, weather.temperature.toString()))
+            }
+            is Result.Error -> {
+                showSnackbar.postValue(context.getString(R.string.request_error))
+            }
+        }
     }
 }
