@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">TestProfSoft</string>
+    <string name="authorisation">Авторизация</string>
+    <string name="password">Пароль</string>
+    <string name="email">Электронный адрес</string>
+    <string name="btn_login">Вход</string>
 </resources>
