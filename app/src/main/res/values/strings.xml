@@ -1,9 +1,18 @@
 <resources>
     <string name="app_name">TestProfSoft</string>
+
     <string name="authorisation">Авторизация</string>
+    <string name="email">Email</string>
     <string name="password">Пароль</string>
-    <string name="email">Электронный адрес</string>
-    <string name="btn_login">Вход</string>
-    <string name="current_weather">Текущая температура: %1$s °C</string>
+    <string name="btn_sign_in">Вход</string>
+    <string name="btn_sign_up">Регистрация</string>
     <string name="request_error">Ошибка запроса</string>
+
+    <string name="current_weather">Текущая температура: %1$s °C</string>
+    <string name="forgot_password">Забыли пароль?</string>
+    <string name="auth_by_facebook">Авторизация через Facebook</string>
+    <string name="auth_by_google_plus">Авторизация через Google+</string>
+    <string name="auth_by_vk">Авторизация через Вконтакте</string>
+    <string name="auth_by_ok">Авторизация через Одноклассники</string>
+    <string name="auth_by_mail">Авторизация через Mail.ru</string>
 </resources>

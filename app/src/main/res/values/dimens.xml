@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="social_btn_size">48dp</dimen>
+    <dimen name="social_btn_margin">2dp</dimen>
+    <dimen name="social_btn_padding">4dp</dimen>
+    <dimen name="social_btn_elevation">1dp</dimen>
+    <dimen name="social_btn_radius">8dp</dimen>
+</resources>

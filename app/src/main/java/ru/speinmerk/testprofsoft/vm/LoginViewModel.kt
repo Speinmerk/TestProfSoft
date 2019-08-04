@@ -15,8 +15,8 @@ import ru.speinmerk.testprofsoft.common.validators.PasswordValidator
 import ru.speinmerk.testprofsoft.domain.RepositoryProvider
 
 class LoginViewModel(application: Application) : AndroidViewModel(application) {
-    var email = ObservableField("1@1.ru")
-    var password = ObservableField("123qweA")
+    var email = ObservableField("")
+    var password = ObservableField("")
     var emailError = ObservableField<String?>()
     var passwordError = ObservableField<String?>()
 
@@ -37,7 +37,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun login(emailEditText: EditText, passwordEditText: EditText) {
+    fun signIn(emailEditText: EditText, passwordEditText: EditText) {
         val email = emailEditText.text.toString()
         val isValidEmail = EmailValidator.check(email)
         if (!isValidEmail) {
@@ -56,6 +56,34 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
         }
         hideKeyboard.postCall()
         showWeather()
+    }
+
+    fun signUp() {
+        // todo Переход на экран регистрации
+    }
+
+    fun authByFacebook() {
+        // todo Регистрация через Facebook
+    }
+
+    fun authByGoogle() {
+        // todo Регистрация через Google
+    }
+
+    fun authByMail() {
+        // todo Регистрация через Mail
+    }
+
+    fun authByOK() {
+        // todo Регистрация через OK
+    }
+
+    fun authByVK() {
+        // todo Регистрация через VK
+    }
+
+    fun recoveryPassword() {
+        // todo Восстановление пароля
     }
 
     private fun showWeather() = GlobalScope.launch {
