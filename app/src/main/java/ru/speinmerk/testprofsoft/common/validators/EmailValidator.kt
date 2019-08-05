@@ -1,11 +1,13 @@
 package ru.speinmerk.testprofsoft.common.validators
 
 object EmailValidator {
+    private const val EMAIL_REGEX = "^[a-zA-Z0-9.!#\$%&'*+=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*\\.+.+"
+
     fun check(email: String): Boolean {
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
+        return EMAIL_REGEX.toRegex().matches(email)
     }
 
-    fun getError(email: String): String? {
-        return if (check(email)) null else EmailError.NOT_CORRECT.message
+    fun getError(email: String): EmailError? {
+        return if (check(email)) null else EmailError.NOT_CORRECT
     }
 }

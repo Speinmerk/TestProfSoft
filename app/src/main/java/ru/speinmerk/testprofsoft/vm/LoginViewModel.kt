@@ -43,7 +43,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
         if (!isValidEmail) {
             val error = EmailValidator.getError(email)
             emailEditText.requestFocus()
-            emailError.set(error)
+            emailError.set(error?.toString())
             return
         }
         val password = passwordEditText.text.toString()
@@ -51,7 +51,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
         if (!isValidPassword) {
             val error = PasswordValidator.getError(password)
             passwordEditText.requestFocus()
-            passwordError.set(error)
+            passwordError.set(error?.toString())
             return
         }
         hideKeyboard.postCall()

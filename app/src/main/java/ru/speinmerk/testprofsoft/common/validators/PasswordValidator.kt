@@ -10,15 +10,14 @@ object PasswordValidator {
         return PASSWORD_REGEX.toRegex().matches(password)
     }
 
-    fun getError(password: String): String? {
-        val error = when {
+    fun getError(password: String): PasswordError? {
+        return when {
             password.length < 6 -> PasswordError.LENGTH
             !PASSWORD_NUMBER_REGEX.toRegex().matches(password) -> PasswordError.NOT_NUMBER
             !PASSWORD_SMALL_CHAR_REGEX.toRegex().matches(password) -> PasswordError.NOT_SMALL_CHAR
             !PASSWORD_BIG_CHAR_REGEX.toRegex().matches(password) -> PasswordError.NOT_BIG_CHAR
             else -> null
         }
-        return error?.message
     }
 
 }
