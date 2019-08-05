@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
@@ -18,7 +19,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    dataBinding.enabled = true
 }
 
 dependencies {
@@ -42,4 +42,10 @@ dependencies {
 
     implementation "com.squareup.retrofit2:retrofit:$retrofit2_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit2_version"
+
+    implementation "com.arello-mobile:moxy:$moxy_version"
+    implementation ('tech.schoolhelper:moxy-x-androidx:1.7.0'){
+        exclude group: 'tech.schoolhelper', module:'moxy-x'
+    }
+    kapt "com.arello-mobile:moxy-compiler:$moxy_version"
 }

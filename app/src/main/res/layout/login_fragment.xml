@@ -1,186 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
+
+<FrameLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        tools:context=".ui.LoginFragment">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/login_background"
+        tools:context=".ui.fragment.LoginFragment">
 
-    <data>
-        <variable name="vm" type="ru.speinmerk.testprofsoft.vm.LoginViewModel"/>
-    </data>
+    <LinearLayout
+            android:id="@+id/login_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
 
-    <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/login_background">
-
-        <LinearLayout
-                android:id="@+id/login_layout"
+        <TextView
+                android:id="@+id/login_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:orientation="vertical" >
+                android:layout_marginBottom="8dp"
+                android:text="@string/authorisation"
+                android:textSize="28sp"/>
 
-            <TextView
-                    android:id="@+id/login_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="8dp"
-                    android:text="@string/authorisation"
-                    android:textSize="28sp"/>
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center">
 
-            <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center">
+            <ImageButton
+                    android:id="@+id/btn_facebook"
+                    android:layout_width="@dimen/social_btn_size"
+                    android:layout_height="@dimen/social_btn_size"
+                    android:background="@drawable/btn_facebook"
+                    android:layout_margin="@dimen/social_btn_margin"
+                    android:padding="@dimen/social_btn_padding"
+                    android:elevation="@dimen/social_btn_elevation"
+                    android:src="@drawable/icon_facebook"
+                    android:scaleType="fitCenter"
+                    android:contentDescription="@string/auth_by_facebook"
+                    tools:targetApi="lollipop"/>
 
-                <ImageButton
-                        android:layout_width="@dimen/social_btn_size"
-                        android:layout_height="@dimen/social_btn_size"
-                        android:background="@drawable/btn_facebook"
-                        android:layout_margin="@dimen/social_btn_margin"
-                        android:padding="@dimen/social_btn_padding"
-                        android:elevation="@dimen/social_btn_elevation"
-                        android:src="@drawable/icon_facebook"
-                        android:scaleType="fitCenter"
-                        android:contentDescription="@string/auth_by_facebook"
-                        android:onClick="@{(v) -> vm.authByFacebook()}"
-                        tools:targetApi="lollipop"/>
+            <ImageButton
+                    android:id="@+id/btn_google"
+                    android:layout_width="@dimen/social_btn_size"
+                    android:layout_height="@dimen/social_btn_size"
+                    android:background="@drawable/btn_google_plus"
+                    android:src="@drawable/icon_google_plus"
+                    android:layout_margin="@dimen/social_btn_margin"
+                    android:padding="@dimen/social_btn_padding"
+                    android:elevation="@dimen/social_btn_elevation"
+                    android:scaleType="fitCenter"
+                    android:contentDescription="@string/auth_by_google_plus"
+                    tools:targetApi="lollipop"/>
 
-                <ImageButton
-                        android:layout_width="@dimen/social_btn_size"
-                        android:layout_height="@dimen/social_btn_size"
-                        android:background="@drawable/btn_google_plus"
-                        android:src="@drawable/icon_google_plus"
-                        android:layout_margin="@dimen/social_btn_margin"
-                        android:padding="@dimen/social_btn_padding"
-                        android:elevation="@dimen/social_btn_elevation"
-                        android:scaleType="fitCenter"
-                        android:contentDescription="@string/auth_by_google_plus"
-                        android:onClick="@{(v) -> vm.authByGoogle()}"
-                        tools:targetApi="lollipop"/>
+            <ImageButton
+                    android:id="@+id/btn_mail"
+                    android:layout_width="@dimen/social_btn_size"
+                    android:layout_height="@dimen/social_btn_size"
+                    android:background="@drawable/btn_mail"
+                    android:src="@drawable/icon_mail"
+                    android:layout_margin="@dimen/social_btn_margin"
+                    android:padding="@dimen/social_btn_padding"
+                    android:elevation="@dimen/social_btn_elevation"
+                    android:scaleType="fitCenter"
+                    android:contentDescription="@string/auth_by_mail"
+                    tools:targetApi="lollipop"/>
 
-                <ImageButton
-                        android:layout_width="@dimen/social_btn_size"
-                        android:layout_height="@dimen/social_btn_size"
-                        android:background="@drawable/btn_mail"
-                        android:src="@drawable/icon_mail"
-                        android:layout_margin="@dimen/social_btn_margin"
-                        android:padding="@dimen/social_btn_padding"
-                        android:elevation="@dimen/social_btn_elevation"
-                        android:scaleType="fitCenter"
-                        android:contentDescription="@string/auth_by_mail"
-                        android:onClick="@{(v) -> vm.authByMail()}"
-                        tools:targetApi="lollipop"/>
+            <ImageButton
+                    android:id="@+id/btn_ok"
+                    android:layout_width="@dimen/social_btn_size"
+                    android:layout_height="@dimen/social_btn_size"
+                    android:background="@drawable/btn_ok"
+                    android:src="@drawable/icon_ok"
+                    android:layout_margin="@dimen/social_btn_margin"
+                    android:padding="@dimen/social_btn_padding"
+                    android:elevation="@dimen/social_btn_elevation"
+                    android:scaleType="fitCenter"
+                    android:contentDescription="@string/auth_by_ok"
+                    tools:targetApi="lollipop"/>
 
-                <ImageButton
-                        android:layout_width="@dimen/social_btn_size"
-                        android:layout_height="@dimen/social_btn_size"
-                        android:background="@drawable/btn_ok"
-                        android:src="@drawable/icon_ok"
-                        android:layout_margin="@dimen/social_btn_margin"
-                        android:padding="@dimen/social_btn_padding"
-                        android:elevation="@dimen/social_btn_elevation"
-                        android:scaleType="fitCenter"
-                        android:contentDescription="@string/auth_by_ok"
-                        android:onClick="@{(v) -> vm.authByOK()}"
-                        tools:targetApi="lollipop"/>
-
-                <ImageButton
-                        android:layout_width="@dimen/social_btn_size"
-                        android:layout_height="@dimen/social_btn_size"
-                        android:background="@drawable/btn_vk"
-                        android:src="@drawable/icon_vk"
-                        android:layout_margin="@dimen/social_btn_margin"
-                        android:padding="@dimen/social_btn_padding"
-                        android:elevation="@dimen/social_btn_elevation"
-                        android:scaleType="fitCenter"
-                        android:contentDescription="@string/auth_by_vk"
-                        android:onClick="@{(v) -> vm.authByVK()}"
-                        tools:targetApi="lollipop"/>
-
-            </LinearLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/phone_layout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    app:error="@{vm.emailError}">
-
-                <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/email"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ems="13"
-                        android:text="@={vm.email}"
-                        android:hint="@string/email"
-                        android:inputType="text"
-                        android:onTextChanged="@{(text, start, before, count) -> vm.onEmailChanged(text)}"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/password_layout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    app:passwordToggleEnabled="true"
-                    app:error="@{vm.passwordError}">
-
-                <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/password"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ems="13"
-                        android:text="@={vm.password}"
-                        android:hint="@string/password"
-                        android:inputType="textPassword"
-                        android:onTextChanged="@{(text, start, before, count) -> vm.onPasswordChanged(text)}"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btn_sing_up"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:padding="8dp"
-                        android:layout_margin="4dp"
-                        android:textColor="@color/btnTextColor"
-                        android:onClick="@{(v) -> vm.signUp()}"
-                        android:text="@string/btn_sign_up"/>
-
-                <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btn_sing_in"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:padding="8dp"
-                        android:layout_margin="4dp"
-                        android:textColor="@color/btnTextColor"
-                        android:onClick="@{(v) -> vm.signIn(email, password)}"
-                        android:text="@string/btn_sign_in"/>
-
-            </LinearLayout>
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="@{(v) -> vm.recoveryPassword()}"
-                    android:text="@string/forgot_password"
-                    android:layout_gravity="center"/>
+            <ImageButton
+                    android:id="@+id/btn_vk"
+                    android:layout_width="@dimen/social_btn_size"
+                    android:layout_height="@dimen/social_btn_size"
+                    android:background="@drawable/btn_vk"
+                    android:src="@drawable/icon_vk"
+                    android:layout_margin="@dimen/social_btn_margin"
+                    android:padding="@dimen/social_btn_padding"
+                    android:elevation="@dimen/social_btn_elevation"
+                    android:scaleType="fitCenter"
+                    android:contentDescription="@string/auth_by_vk"
+                    tools:targetApi="lollipop"/>
 
         </LinearLayout>
 
-    </FrameLayout>
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/email_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
 
-</layout>
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="13"
+                    android:hint="@string/email"
+                    android:inputType="text"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/password_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:passwordToggleEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="13"
+                    android:hint="@string/password"
+                    android:inputType="textPassword"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_sing_up"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:layout_margin="4dp"
+                    android:textColor="@color/btnTextColor"
+                    android:text="@string/btn_sign_up"/>
+
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_sing_in"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:layout_margin="4dp"
+                    android:textColor="@color/btnTextColor"
+                    android:text="@string/btn_sign_in"/>
+
+        </LinearLayout>
+
+        <TextView
+                android:id="@+id/btn_forgot_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/forgot_password"
+                android:layout_gravity="center"/>
+
+    </LinearLayout>
+
+</FrameLayout>
