@@ -2,11 +2,10 @@ package ru.speinmerk.testprofsoft.presentation.presenter
 
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
 import ru.speinmerk.testprofsoft.App
 import ru.speinmerk.testprofsoft.R
-import ru.speinmerk.testprofsoft.common.utils.Result
 import ru.speinmerk.testprofsoft.common.validators.EmailValidator
 import ru.speinmerk.testprofsoft.common.validators.PasswordValidator
 import ru.speinmerk.testprofsoft.domain.WeatherRepository
@@ -22,6 +21,8 @@ class LoginPresenter : MvpPresenter<LoginView>() {
     init {
         App.component.inject(this)
     }
+
+    private var disposable: Disposable? = null
 
     fun onEmailChanged(text: CharSequence) {
         val isValidEmail = EmailValidator.check(text.toString())
@@ -82,15 +83,16 @@ class LoginPresenter : MvpPresenter<LoginView>() {
         // todo Восстановление пароля
     }
 
-    private fun showWeather() = GlobalScope.launch {
-        when(val result = weatherRepository.getWeather("Saratov,ru")) {
-            is Result.Success -> {
-                val weather = result.data
-                viewState.showSnackbar(R.string.current_weather, weather.temperature.toString())
-            }
-            is Result.Error -> {
-                viewState.showSnackbar(R.string.request_error)
-            }
+    private fun showWeather() {
+        if (disposable?.isDisposed != false) {
+            disposable?.dispose()
         }
+        disposable = weatherRepository.getWeather("Saratov,ru")
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                viewState.showSnackbar(R.string.current_weather, it.temperature.toString())
+            }, {
+                viewState.showSnackbar(R.string.request_error)
+            })
     }
 }
