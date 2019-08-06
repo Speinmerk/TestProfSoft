@@ -8,19 +8,28 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
+import com.arellomobile.mvp.presenter.PresenterType
+import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.login_fragment.view.*
+import ru.speinmerk.testprofsoft.App
 import ru.speinmerk.testprofsoft.R
 import ru.speinmerk.testprofsoft.presentation.presenter.LoginPresenter
 import ru.speinmerk.testprofsoft.presentation.view.LoginView
 import ru.speinmerk.testprofsoft.ui.common.BaseTextWatcher
+import javax.inject.Inject
 
 class LoginFragment : MvpAppCompatFragment(), LoginView {
 
-    @InjectPresenter
+    @InjectPresenter(type = PresenterType.GLOBAL)
     lateinit var presenter: LoginPresenter
+
+    @ProvidePresenter(type = PresenterType.GLOBAL)
+    fun providePresenter(): LoginPresenter {
+        return LoginPresenter()
+    }
 
     lateinit var emailEditTextLayout: TextInputLayout
     lateinit var emailEditText: TextInputEditText
@@ -78,7 +87,7 @@ class LoginFragment : MvpAppCompatFragment(), LoginView {
     }
 
     override fun showSnackbar(resStringId: Int, vararg text: String) {
-        showSnackbar(getString(resStringId, text))
+        showSnackbar(getString(resStringId, *text))
     }
 
     override fun showSnackbar(text: String) {

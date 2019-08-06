@@ -48,4 +48,7 @@ dependencies {
         exclude group: 'tech.schoolhelper', module:'moxy-x'
     }
     kapt "com.arello-mobile:moxy-compiler:$moxy_version"
+
+    implementation "com.google.dagger:dagger:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
 }

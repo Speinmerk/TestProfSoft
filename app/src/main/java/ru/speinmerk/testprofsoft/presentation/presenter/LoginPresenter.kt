@@ -4,15 +4,25 @@ import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import ru.speinmerk.testprofsoft.App
 import ru.speinmerk.testprofsoft.R
 import ru.speinmerk.testprofsoft.common.utils.Result
 import ru.speinmerk.testprofsoft.common.validators.EmailValidator
 import ru.speinmerk.testprofsoft.common.validators.PasswordValidator
-import ru.speinmerk.testprofsoft.domain.RepositoryProvider
+import ru.speinmerk.testprofsoft.domain.WeatherRepository
 import ru.speinmerk.testprofsoft.presentation.view.LoginView
+import javax.inject.Inject
 
 @InjectViewState
 class LoginPresenter : MvpPresenter<LoginView>() {
+
+    @Inject
+    lateinit var weatherRepository: WeatherRepository
+
+    init {
+        App.component.inject(this)
+    }
+
     fun onEmailChanged(text: CharSequence) {
         val isValidEmail = EmailValidator.check(text.toString())
         if (isValidEmail) {
@@ -73,7 +83,6 @@ class LoginPresenter : MvpPresenter<LoginView>() {
     }
 
     private fun showWeather() = GlobalScope.launch {
-        val weatherRepository = RepositoryProvider.provideWeatherRepository()
         when(val result = weatherRepository.getWeather("Saratov,ru")) {
             is Result.Success -> {
                 val weather = result.data
